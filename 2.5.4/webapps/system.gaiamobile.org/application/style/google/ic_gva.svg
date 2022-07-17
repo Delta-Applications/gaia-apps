@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Action / Comms / Google Assistant</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Action-/-Comms-/-Google-Assistant" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="green" fill="#35A853" x="14.6666667" y="24" width="2.66666667" height="5.33333333"></rect>
+        <rect id="blue" fill="#4285F4" x="12" y="2.66666667" width="8" height="17.3333333" rx="4"></rect>
+        <path d="M9.33333333,16 C9.33333333,20.1152406 12.2036877,22.6666667 16,22.6666667 C19.6878462,22.6666667 22.5018905,20.2589536 22.6596826,16.3488821 L22.6666667,16 L25.3333333,16 C25.3333333,21.6625372 21.2036877,25.3333333 16,25.3333333 C10.909436,25.3333333 6.84672406,21.8204023 6.67249016,16.3664548 L6.66666667,16 L9.33333333,16 Z" id="red" fill="#EB493B" fill-rule="nonzero"></path>
+        <path d="M9.33333333,16 C9.33333333,17.8654355 9.89028103,19.3831966 10.8991017,20.5170945 L11.1221557,20.754184 L9.23125384,22.6345035 C7.67455265,21.0690412 6.77636748,18.958928 6.67608515,16.4708944 L6.66666667,16 L9.33333333,16 Z" id="yellow" fill="#F4B400" fill-rule="nonzero"></path>
+    </g>
+</svg>

@@ -1,0 +1,3 @@
+'use strict';function onLoadCallScreen(evt){window.removeEventListener('load',onLoadCallScreen);CallsHandler.setup();CallScreen.init();DtmfHelper.init();LockScreen.init();TonePlayer.init();SdnContacts.init();}
+function unloadCallScreen(evt){}
+window.addEventListener('load',onLoadCallScreen);window.addEventListener('hashchange',()=>{window.performance.mark('openCallscreen-end');window.performance.clearMarks('openCallscreen-end');});

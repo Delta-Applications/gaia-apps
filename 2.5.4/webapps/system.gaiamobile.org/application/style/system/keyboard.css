@@ -1,0 +1,21 @@
+#keyboard-app {
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+#keyboard-app iframe {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.ime-insert-dialog .dialog-container .dialog > .content {
+  background-color: var(--color-purple);
+  color: var(--color-gs00);
+}

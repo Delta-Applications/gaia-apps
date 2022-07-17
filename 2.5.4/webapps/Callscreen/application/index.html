@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Dialer</title>
+    <link rel="stylesheet" type="text/css" href="/style/oncall.css">
+    <link rel="stylesheet" type="text/css" href="/style/rtt.css">
+    <link rel="stylesheet" type="text/css" href="/style/conference_group_ui.css">
+    <link rel="stylesheet" type="text/css" href="/style/dialer_helper.css">
+    <link rel="stylesheet" type="text/css" href="/style/dialing_number.css">
+    <link rel="stylesheet" type="text/css" href="/style/lockscreen.css">
+
+    <link rel="stylesheet" type="text/css" href="/shared/style/dialer/keypad.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/dialer/overlay.css">
+
+    <link rel="stylesheet" type="text/css" href="/shared/style/action_menu.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/option_menu.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/softkey.css">
+    <link rel="stylesheet" type="text/css" href="/shared/style/toaster.css">
+    <link rel="stylesheet" type="text/css" href="/shared/elements/gaia-theme/gaia-theme.css">
+    <link rel="stylesheet" type="text/css" href="/shared/elements/gaia-theme/gaia-font.css">
+    <link rel="stylesheet" type="text/css" href="/shared/elements/gaia-icons/gaia-icons.css">
+    <!-- Localization -->
+    <script defer="" type="text/javascript" src="/shared/js/lazy_loader.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/l10n.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/l10n_date.js"></script>
+    <meta name="defaultLanguage" content="en-US">
+    <meta name="availableLanguages" content="af-ZA:202107131656, ar-SA:202107131656, az-Latn-AZ:202107131656, be-BY:202107131656, bg-BG:202107131656, bn-BD:202107131656, bn-IN:202107131656, bs-BA:202107131656, cs-CZ:202107131656, da-DK:202107131656, de-DE:202107131656, el-GR:202107131656, en-GB:202107131656, en-US:202107131656, es-ES:202107131656, es-US:202107131656, en-NG:202107131656, et-EE:202107131656, fi-FI:202107131656, fr-FR:202107131656, fr-CA:202107131656, he-IL:202107131656, hi-IN:202107131656, hr-HR:202107131656, hu-HU:202107131656, hy-AM:202107131656, id-ID:202107131656, it-IT:202107131656, km-KH:202107131656, kk-KZ:202107131656, lt-LT:202107131656, lv-LV:202107131656, lo-LA:202107131656, ka-GE:202107131656, mk-MK:202107131656, ms-MY:202107131656, nb-NO:202107131656, ne-IN:202107131656, nl-NL:202107131656, pl-PL:202107131656, pt-BR:202107131656, pt-PT:202107131656, ro-RO:202107131656, ru-RU:202107131656, si-LK:202107131656, sk-SK:202107131656, sl-SI:202107131656, sq-AL:202107131656, sr-Latn-CS:202107131656, sv-SE:202107131656, sw-ZA:202107131656, ta-IN:202107131656, th-TH:202107131656, fil-PH:202107131656, tr-TR:202107131656, uk-UA:202107131656, ur-PK:202107131656, vi-VN:202107131656, xh-ZA:202107131656, zh-CN:202107131656, zh-TW:202107131656, zh-HK:202107131656, is-IS:202107131656, zu-ZA:202107131656, mo-RO:202107131656, fa-IR:202107131656, ps-AF:202107131656, uz-Cyrl-UZ:202107131656">
+    <link rel="localization" href="/locales-obj/{locale}.json">
+    
+    
+    
+    
+    
+
+    <script defer="" type="application/javascript" src="/js/index.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/fb/fb_request.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/fb/fb_data_reader.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/fb/fb_reader_utils.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/settings_listener.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/settings_url.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/async_storage.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/contact_photo_helper.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/font_size_utils.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/date_time_helper.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/simple_phone_matcher.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/dialer/dtmf_tone.js"></script>
+    <script defer="" type="application/javascript" src="js/utils.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/bluetooth_helper.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/navigation_manager.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/navigation_handler.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/option_menu.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/softkey_panel.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/option_menu_helper.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/toaster.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/ext_activity_control.js"></script>
+    <script defer="" type="application/javascript" src="/shared/js/aml/aml.js"></script>
+
+    <script defer="" type="application/javascript" src="/js/confirm_dialog_helper.js"></script>
+    <script defer="" type="application/javascript" src="/js/call_screen.js"></script>
+    <script defer="" type="application/javascript" src="/js/calls_handler.js"></script>
+    <script defer="" type="application/javascript" src="/js/conference_group_handler.js"></script>
+    <script defer="" type="application/javascript" src="/js/dialer_helper.js"></script>
+    <script defer="" type="application/javascript" src="/js/font_size_manager.js"></script>
+    <script defer="" type="application/javascript" src="/js/conference_group_ui.js"></script>
+    <script defer="" type="application/javascript" src="/js/handled_call.js"></script>
+    <script defer="" type="application/javascript" src="/js/call_screen_menu.js"></script>
+    <script defer="" type="application/javascript" src="/js/call_screen_helper.js"></script>
+    <script defer="" type="application/javascript" src="/js/video_call.js"></script>
+    <script defer="" type="application/javascript" src="/js/voicemail.js"></script>
+    <script defer="" type="application/javascript" src="/js/tone_player.js"></script>
+    <script defer="" type="application/javascript" src="/js/photo_resize.js"></script>
+    <script defer="" type="application/javascript" src="/js/call_recording.js"></script>
+    <script defer="" type="application/javascript" src="/js/dtmf_helper.js"></script>
+    <script defer="" type="application/javascript" src="/js/mmi_handler.js"></script>
+    <script defer="" type="application/javascript" src="/js/lockscreen.js"></script>
+    <script defer="" type="application/javascript" src="/js/sdn_contacts.js"></script>
+    <script defer="" type="application/javascript" src="/js/rtt/rtt.js"></script>
+    <script defer="" type="application/javascript" src="/js/rtt/rtt_bubble_control.js"></script>
+    <script defer="" type="application/javascript" src="/js/rtt/rtt_cache.js"></script>
+    <script defer="" type="application/javascript" src="/js/rtt/rtt_view.js"></script>
+    <script defer="" type="application/javascript" src="/js/contacts.js"></script>
+    <!-- Lazy load these:
+    <script defer src="/shared/js/component_utils.js"></script>
+    <script defer src="/shared/elements/gaia_confirm/script.js"></script>
+    <link rel="resource" type="application/json" href="shared/resources/aml.json"/>
+    -->
+
+    <script defer="" src="/shared/js/screen_layout.js"></script>
+    <script defer="" src="/shared/js/image_utils.js"></script>
+    
+  <meta content="2.2" name="appVersion"></head>
+  <body class="theme-communications" tabindex="-1">
+    <article id="call-screen" data-layout="" class="displayed">
+      <section id="dialing-info">
+        <div id="dialing-number"><bdi></bdi></div>
+      </section>
+      <article id="calls" show-mode="max-mode" data-count="0">
+        <section id="group-call" hidden="">
+          <div class="photo-icon" data-icon="call-conference"></div>
+          <div class="duration">
+            <span class="font-light"></span>
+            <div class="call-recording-container hide" dir="ltr">
+              <div class="call-recording" dir="ltr">
+                <span class="rec-content" data-l10n-id="rec" dir="ltr">REC</span>
+                <span class="rec-dot" dir="ltr"></span>
+              </div>
+              <div></div>
+            </div>
+          </div>
+          <div class="status-icon"></div>
+          <div id="callsinfo">
+            <div class="infoContainer">
+              <div class="numberWrapper">
+                <div class="number font-light">
+                  <bdi></bdi>
+                </div>
+              </div>
+              <div class="additionalContactInfo font-light p-sec">
+                <div class="tel-info" dir="ltr">
+                  <span class="tel-type" dir="auto"></span>
+                </div>
+                <div class="indicator-container">
+                  <div class="wifi-call-quality-container hide">
+                    <div class="wifi-call-quality">
+                      <span class="quality-content"></span>
+                      <span class="quality-dot"></span>
+                    </div>
+                    <div></div>
+                  </div>
+                  <div class="call-recording-container hide" dir="ltr">
+                    <div class="call-recording" dir="ltr">
+                      <span class="rec-content" data-l10n-id="rec" dir="ltr">REC</span>
+                      <span class="rec-dot" dir="ltr"></span>
+                    </div>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="callended hidden" data-l10n-id="call-ended">Call ended</div>
+            </div>
+          </div>
+        </section>
+        <section id="handled-call-template" role="dialog">
+          <div class="stir-container hide">
+            <div class="stir">
+              <div class="stir-checked"></div>
+              <div class="stir-content" data-l10n-id="valid-number">Valid Number</div>
+            </div>
+          </div>
+          <div class="photo-icon" data-icon="contacts"></div>
+          <div class="remote-video-anchor" hidden=""><video class="remote-video-view"></video></div>
+          <div class="local-video-anchor" hidden="">
+            <div data-icon="video-off"></div>
+            <video class="local-video-view"></video>
+          </div>
+          <div class="duration">
+            <span class="font-light"></span>
+            <div class="call-recording-container hide" dir="ltr">
+              <div class="call-recording" dir="ltr">
+                <span class="rec-content" data-l10n-id="rec" dir="ltr">REC</span>
+                <span class="rec-dot" dir="ltr"></span>
+              </div>
+              <div></div>
+            </div>
+          </div>
+          <div class="status-icon"></div>
+          <div id="callsinfo">
+            <div class="infoContainer">
+              <div class="numberWrapper direction-status-bar">
+                <div class="number font-light">
+                  <bdi></bdi>
+                </div>
+                <span role="button" id="switch-calls-button"></span>
+              </div>
+              <div class="additionalContactInfo font-light p-sec">
+                <div class="tel-info">
+                  <span class="tel-type"></span>
+                  <span class="tel"></span>
+                  <div class="stir-checked hide"></div>
+                </div>
+                <div class="indicator-container">
+                  <div class="wifi-call-quality-container hide">
+                    <div class="wifi-call-quality">
+                      <span class="quality-content"></span>
+                      <span class="quality-dot"></span>
+                    </div>
+                    <div></div>
+                  </div>
+                  <div class="call-recording-container hide" dir="ltr">
+                    <div class="call-recording" dir="ltr">
+                      <span class="rec-content" data-l10n-id="rec" dir="ltr">REC</span>
+                      <span class="rec-dot" dir="ltr"></span>
+                    </div>
+                    <div></div>
+                  </div>
+                </div>
+              </div>
+              <div class="callended hidden" data-l10n-id="call-ended">Call ended</div>
+              <div class="connect" data-l10n-id="connecting">Connecting</div>
+            </div>
+            <div class="hd-icon hide"></div>
+          </div>
+        </section>
+      </article>
+      <div id="group-call-details" role="dialog">
+        <h1 data-l10n-id="manage-call">Manage call</h1>
+        <menu id="group-call-details-list"></menu>
+      </div>
+      <div id="dialer-helper" role="dialog">
+        <div id="input-container">
+          <input id="dialer-number-input" x-inputmode="native">
+        </div>
+        <div id="dialer-background"></div>
+      </div>
+      <div id="lock-screen" role="dialog">
+        <div id="lock-screen-background"></div>
+        <div id="passcode-view">
+          <div class="info-text">
+            <p id="passcode-text"></p>
+          </div>
+          <div class="codes">
+            <div class="code">
+              <div class="dot"></div>
+            </div>
+            <div class="code">
+              <div class="dot"></div>
+            </div>
+            <div class="code">
+              <div class="dot"></div>
+            </div>
+            <div class="code">
+              <div class="dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="bluetooth-menu" class="option-menu" role="dialog">
+        <div></div>
+        <h1 data-l10n-id="select">Select</h1>
+        <menu>
+          <button type="button" data-l10n-id="bluetooth-device" id="btmenu-btdevice" class="p-pri option-item">Bluetooth device</button>
+          <button type="button" data-l10n-id="handset-earpiece" id="btmenu-receiver" class="p-pri option-item">Handset</button>
+          <button type="button" data-l10n-id="speaker" id="btmenu-speaker" class="p-pri option-item">Speaker</button>
+        </menu>
+      </div>
+      <div id="reply-menu" class="option-menu" role="dialog">
+        <div></div>
+        <h1 data-l10n-id="softkey-options">Options</h1>
+        <menu>
+          <button type="button" data-l10n-id="reply-message-1" class="p-pri option-item">Sorry, I can't talk right now.</button>
+          <button type="button" data-l10n-id="reply-message-2" class="p-pri option-item">I'm on my way.</button>
+          <button type="button" data-l10n-id="reply-message-3" class="p-pri option-item">Can I call you later?</button>
+          <button type="button" data-l10n-id="reply-message-4" id="reply-custom" class="p-pri option-item">Custom...</button>
+        </menu>
+      </div>
+      <article id="main-container">
+        <div id="contact-background"></div>
+      </article>
+      <article id="incoming-container">
+        <section id="incoming-info">
+          <div class="incoming-number-info">
+            <span id="incoming-number" class="p-pri" dir="auto"></span>
+            <div id="incoming-number-additional-info" class="p-sec">
+              <span id="incoming-number-additional-info-tel-type" dir="auto"></span>
+              <span id="incoming-number-additional-info-tel" dir="ltr"></span>
+              <div class="stir-checked hide"></div>
+            </div>
+            <div class="status-icon"></div>
+            <div class="hd-icon white hide"></div>
+          </div>
+        </section>
+      </article>
+      <section id="rtt-view-template" class="rtt-view" role="region">
+        <h1 class="messages-header-text">
+          <span class="name"></span>
+          <span class="time"></span>
+        </h1>
+        <article class="composer-container view-body">
+          <div class="flex-composer">
+            <div class="messages-container" data-type="list">
+              <ul class="message-list"></ul>
+            </div>
+            <form class="messages-compose-form">
+              <div class="composer-message-input-container">
+                <input class="messages-input navigable p-pri" placeholder="Message" x-inputmode="plain">
+                
+              </div>
+            </form>
+          </div>
+        </article>
+      </section>
+      <section id="bubble-template" class="bubble" hidden="">
+        <div class="message-content">
+          <div class="message-content-body-container">
+            <p class="message-content-body" tabindex="-1"></p>
+          </div>
+        </div>
+      </section>
+    </article>
+    <div id="vt-confirmation-dialog" style="z-index:1024;"></div>
+  </body>
+
+</html>

@@ -1,0 +1,34 @@
+'use strict';let CallRecording=(function callrecording(){const MODE_SETTINGS='callrecording.mode';const NOTIFICATION_SETTINGS='callrecording.notification.enabled';const VIBRATION_SETTINGS='callrecording.vibration.enabled';const FILE_FORMATE_SETTINGS='callrecording.file.format';const DEFAULT_MEDIA_LOCATION='device.storage.writable.name';const RECFILE='callrecording';const MINSPACE=40000;const MINDURATION=3;const TIMESLICE=5000;const STATE=['ready','starting','started','stopping','stopped','saving'];let settingsAttr=[MODE_SETTINGS,NOTIFICATION_SETTINGS,VIBRATION_SETTINGS,FILE_FORMATE_SETTINGS,RECFILE,DEFAULT_MEDIA_LOCATION];let settingsValue={};let recState='ready';let mediaRecorder=null;let telephony=window.navigator.mozTelephony;let recNumber;let callType='outgoing';let startTime;let lastRecReadyTime;let callOnRec;let recordedChunks=[];let blobsize=0;let spaceEnough=true;let freeSpace;let conferenceCallLength=0;let serviceId=0;init();function init(){for(let i=0;i<settingsAttr.length;i++){let attr=settingsAttr[i];SettingsListener.observe(attr,undefined,(value)=>{settingsValue[attr]=value;});}}
+function getSettingsValue(attr){let result=settingsValue[attr];if(result===undefined){switch(attr){case MODE_SETTINGS:result='off';break;case NOTIFICATION_SETTINGS:case VIBRATION_SETTINGS:result=false;break;case FILE_FORMATE_SETTINGS:result='3gpp';break;case DEFAULT_MEDIA_LOCATION:result='sdcard';break;default:result=null;}}
+return result;}
+function startRec(){if(getSettingsValue(MODE_SETTINGS)==='off'||CallsHandler.isVideoCall()||!CallsHandler.isAnyConnectedCall||getRecState()!=='ready'){console.log('callscreen:not allow recording');return;}
+setRecState('starting');getFreeSpace((space)=>{if(space==='error'||space<=MINSPACE){setRecState('ready');if(space<=MINSPACE&&spaceEnough){spaceEnough=false;}
+return;}
+freeSpace=space;navigator.mediaDevices.getUserMedia({audio:{audioSource:'voicecall'}}).then((stream)=>{mediaRecorder=new MediaRecorder(stream);mediaRecorder.ondataavailable=onRecReady;mediaRecorder.onstop=onRecStop;mediaRecorder.start(TIMESLICE);onRecStart();},()=>{setRecState('ready');console.log('callscreen: getusermedia fail');});});}
+function stopRec(){if(mediaRecorder&&getRecState()==='started'){setRecState('stopping');mediaRecorder.stop();}}
+function onRecStart(){setRecState('started');startTime=new Date();lastRecReadyTime=startTime;let activeCall=telephony.active;if(activeCall&&activeCall.state==='connected'){let call;showRecReminder('start-recording-call');showRecIndicator(true);callOnRec=activeCall;if(activeCall===telephony.conferenceGroup){conferenceCallLength=activeCall.calls.length;if(conferenceCallLength){call=activeCall.calls[conferenceCallLength-1];}else{conferenceCallLength=1;}}else{CallsHandler.handledCalls.some((hc)=>{if(hc.call==activeCall){callType=hc.outgoing?'outgoing':'incoming';}});conferenceCallLength=0;call=activeCall;}
+recNumber=call&&call.id.number?call.id.number:null;serviceId=call&&call.serviceId?call.serviceId:0;activeCall.addEventListener('statechange',handleStateChange);activeCall.addEventListener('groupchange',handleGroupChange);}else{stopRec();}}
+function onRecReady(event){if(!spaceEnough){return;}
+blobsize=blobsize+event.data.size;if(blobsize<freeSpace){recordedChunks.push(event.data);lastRecReadyTime=new Date();}else{spaceEnough=false;mediaRecorder.stop();}}
+function onRecStop(){let message=spaceEnough?'stop-recording-call':'insufficient-storage';showRecReminder(message);showRecIndicator(false);setRecState('stopped');saveRec(new Blob(recordedChunks));reset();}
+function saveRec(blob){let duration=Math.floor((lastRecReadyTime-startTime)/1000);if(duration<MINDURATION){console.log('callscreen: recording duration is too short');setRecState('ready');return;}
+let mediaLocation=getSettingsValue(DEFAULT_MEDIA_LOCATION);let file_formate=getSettingsValue(FILE_FORMATE_SETTINGS);let filename=`/${mediaLocation}/${RECFILE}/${recNumber}_`+`${lastRecReadyTime.getTime()}_${duration}_${callType}_`+`${conferenceCallLength}_${serviceId}.${file_formate}`;let storage=navigator.getDeviceStorage('sdcard');let request=storage.addNamed(blob,filename);setRecState('saving');request.onsuccess=()=>{setRecState('ready');console.log('callscreen: MediaDB operationed successfully');};request.onerror=()=>{setRecState('ready');console.error('callscreen: MediaDB failed to store'+filename+'in DeviceStorage:',request.error);};}
+function reset(){mediaRecorder=null;conferenceCallLength=0;recordedChunks=[];blobsize=0;if(callOnRec){callOnRec.removeEventListener('statechange',handleStateChange);callOnRec.removeEventListener('groupchange',handleGroupChange);callOnRec=null;}}
+function handleStateChange(event){let call=event.target;if(!call){return;}
+if(call.videoCallState&&'Voice'!==call.videoCallState){stopRec();}
+switch(call.state){case'held':case'disconnected':case'':stopRec();break;default:return;}}
+function handleGroupChange(evt){let call=evt.target;if(!call||!call.group){return;}
+stopRec();}
+function manualCallRec(){if(isAutoRec()){return;}
+if(getRecState()==='ready'){startRec();}else{stopRec();}}
+function autoCallRec(){if(isAutoRec()){if(getRecState()!=='ready'){window.addEventListener('ready-to-rec',function _startRec(){window.removeEventListener('ready-to-rec',_startRec);startRec();});}else{startRec();}}}
+function isAutoRec(){return getSettingsValue(MODE_SETTINGS)==='auto';}
+function getFreeSpace(cb){let storage=navigator.getDeviceStorage('sdcard');let freereq=storage.freeSpace();freereq.onsuccess=()=>{cb(freereq.result);};freereq.onerror=()=>{console.log('freereq.result'+freereq.result);cb('error');};}
+function setRecState(state){if(STATE.indexOf(state)!==-1){recState=state;}else{recState='';}
+if(recState==='ready'){window.dispatchEvent(new CustomEvent('ready-to-rec'));}}
+function getRecState(){return recState;}
+function showRecIndicator(display){if(display){let activeCall=telephony.active;if(activeCall===telephony.conferenceGroup){ConferenceGroupUI.showRecIndicator(true);}else{CallsHandler.handledCalls.some((handledCall)=>{if(handledCall.call===activeCall){handledCall.showRecIndicator(true);return;}});}}else{ConferenceGroupUI.showRecIndicator(false);CallsHandler.handledCalls.forEach((handledCall)=>{handledCall.showRecIndicator(false);});}}
+function showSpaceNoticeIfNeeded(){if(!spaceEnough){spaceEnough=true;navigator.mozApps.getSelf().onsuccess=(evt)=>{let app=evt.target.result;app.connect('callscreencomms').then((ports)=>{let options={type:'rec-insufficient-storage'};ports.forEach(function(port){port.postMessage(options);});},(reason)=>{console.log('callscreen: callscreencomms is rejected:'+reason);});}}}
+function showRecReminder(message){if(getSettingsValue(NOTIFICATION_SETTINGS)){CallScreen.showToast(message);}
+if(getSettingsValue(VIBRATION_SETTINGS)){navigator.vibrate([200]);}}
+return{manualCallRec:manualCallRec,autoCallRec:autoCallRec,stopRec:stopRec,showSpaceNoticeIfNeeded:showSpaceNoticeIfNeeded}})();

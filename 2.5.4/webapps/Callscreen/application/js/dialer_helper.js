@@ -1,0 +1,15 @@
+'use strict';var DialerHelper=(function(){var dialer=document.getElementById('dialer-helper');var input=document.getElementById('dialer-number-input');var centerButton;var phoneNumber='';var selectionEnd='';var acceptKey={'1':'1','2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9','*':'*','0':'0','#':'#'};var SPECIAL_CHARS=['*','+',','];var lastKey=null;var lastInputTime=0;function showDialerHelper(){phoneNumber='';selectionEnd=0;DtmfHelper.disableDtmf();dialer.classList.add('display');centerButton=document.getElementById('software-keys-center');updateView();input.focus();input.addEventListener('keydown',handleKeyDown);input.oninput=updateView;input.onblur=()=>{if(isDialerHelperShown()){input.focus();}};}
+function hideDialerHelper(){DtmfHelper.enableDtmf();centerButton.style.visibility='visible';dialer.classList.remove('display');document.body.focus();CallScreenHelper.render();input.removeEventListener('keydown',handleKeyDown);}
+function isDialerHelperShown(){return dialer.classList.contains('display');}
+function callNumber(){if(phoneNumber.length!==0){CallsHandler.dial(phoneNumber);hideDialerHelper();}}
+function handleKeyDown(event){var key=CallScreen.translateKey(event.key);if(key==='ArrowLeft'||key==='ArrowRight'){return;}
+event.stopPropagation();event.preventDefault();if(key==='Call'){callNumber();}else if(key==='Backspace'&&CallScreen.isEndCallKeyExisted()){clearPhoneNumber();}else if(acceptKey[key]){if('*'===key){var currentTime=new Date();if('*'===lastKey&&currentTime-lastInputTime<1000){var lastCharIndex=SPECIAL_CHARS.indexOf(input.value[input.selectionEnd-1]);var newChar=SPECIAL_CHARS[(lastCharIndex+1)%SPECIAL_CHARS.length];replaceLeftChar(newChar);}else{addNewChar(key);}
+lastInputTime=currentTime;}else{addNewChar(key);}
+lastKey=key;}}
+function replaceLeftChar(newChar){var caret=input.selectionEnd;if(!caret){return;}
+var value=input.value;phoneNumber=value.substr(0,caret-1)+newChar+value.substr(caret);if(!newChar){selectionEnd=caret-1;updateView();}else{selectionEnd=caret;}}
+function addNewChar(char){var caret=input.selectionEnd;var value=input.value;phoneNumber=value.substr(0,caret)+char+value.substr(caret);selectionEnd=caret+1;}
+function updateView(){input.value=phoneNumber;input.selectionEnd=selectionEnd;FontSizeManager.adaptToSpace(FontSizeManager.DIAL_PAD,input,false,'begin',true);centerButton.style.visibility=phoneNumber.length?'visible':'hidden';}
+function clearPhoneNumber(){if(phoneNumber.length!==0){replaceLeftChar('');}else{hideDialerHelper();}}
+function focus(){if(isDialerHelperShown()){input.focus();setTimeout(()=>{if(isDialerHelperShown()&&(document.activeElement!==input)){input.focus();}},1000);}}
+return{showDialerHelper:showDialerHelper,isDialerHelperShown:isDialerHelperShown,hideDialerHelper:hideDialerHelper,callNumber:callNumber,clearPhoneNumber:clearPhoneNumber,focus:focus};})();

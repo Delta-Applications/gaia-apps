@@ -1,0 +1,14 @@
+
+(function(exports){const SCROLL_STEP_HEIGHT=45;function rtt_isEmptyMessage(message){return(!message||!message.body);}
+function rtt_buildBubbleItem(messageId,message){let messageDOM=document.createElement('li');messageDOM.className='navigable message '+message.direction;messageDOM.id=messageId;messageDOM.setAttribute('call-id',this.callId);let bubble=document.getElementById('bubble-template').cloneNode(true);bubble.id='';bubble.hidden=false;messageDOM.appendChild(bubble);let content=bubble.querySelector('.message-content-body');content.textContent=message.body;return messageDOM;}
+function rtt_listScrollToBottom(listView){if(listView){listView.scrollTop=listView.scrollHeight-listView.clientHeight;}}
+function rtt_listIsBottom(listView){return listView.scrollHeight===listView.scrollTop+listView.clientHeight;}
+function rtt_listScrollDown(listView){let bottom=listView.scrollTop+listView.clientHeight;if(bottom+SCROLL_STEP_HEIGHT>=listView.scrollHeight){toggleArrowDown(listView.parentElement,false);rtt_listScrollToBottom(listView);}else{listView.scrollTop+=SCROLL_STEP_HEIGHT;}}
+function rtt_listScrollUp(listView){if(listView.scrollTop<SCROLL_STEP_HEIGHT){listView.scrollTop=0;}else{listView.scrollTop-=SCROLL_STEP_HEIGHT;}}
+function rtt_viewChange(evt){let rttView=evt.detail.curRttView;if(rttView){let listView=rttView.querySelector('.message-list');if(evt.detail.key==='ArrowUp'){rtt_listScrollUp(listView);}else{rtt_listScrollDown(listView);}}}
+function rtt_updateMessage(callId,messageId){let rttView=document.querySelector('.rtt-view[call-id="'+callId+'"]');messageJson=RttCache.getMessage(callId,messageId);if(rttView&&messageJson){let listView=rttView.querySelector('.message-list');let scrollToBottom=false;if(rtt_listIsBottom(listView)){scrollToBottom=true;}
+let messageDOM=rttView.querySelector('[id="'+messageId+'"].message');if(messageDOM){let content=messageDOM.querySelector('.message-content-body');content.textContent=messageJson.body;if(messageJson.direction==='sent'&&(messageDOM.offsetTop-listView.offsetTop<listView.scrollTop||(messageDOM.offsetTop-listView.offsetTop+messageDOM.clientHeight)>(listView.scrollTop+listView.clientHeight))){messageDOM.scrollIntoView(false);scrollToBottom=false;}
+if(rtt_isEmptyMessage(messageJson)){messageDOM.parentNode.removeChild(messageDOM);}}else{messageDom=rtt_buildBubbleItem(messageId,messageJson);listView.appendChild(messageDom);if(!scrollToBottom&&messageJson.direction==='received'){toggleArrowDown(listView.parentElement,true);}}
+if(scrollToBottom){rtt_listScrollToBottom(listView);toggleArrowDown(listView.parentElement,false);}}}
+function toggleArrowDown(container,display){if(display){container.classList.add('arrow-down');}else{container.classList.remove('arrow-down');}}
+window.addEventListener('rttViewChange',rtt_viewChange);exports.RttBubbleControl={updateMessage:rtt_updateMessage};})(window);

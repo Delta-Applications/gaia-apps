@@ -1,0 +1,830 @@
+{
+  "version": "0/36",
+  "countries": [
+    {
+      "country": {
+        "code": "zz",
+        "name": "Global",
+        "label": "Global"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "au",
+        "name": "Australia",
+        "label": "Australia"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "bd",
+        "name": "Bangladesh",
+        "label": "Bangladesh"
+      },
+      "language": {
+        "code": "bn",
+        "name": "বাংলা-BD"
+      }
+    },
+    {
+      "country": {
+        "code": "be",
+        "name": "Belgium",
+        "label": "Belgium"
+      },
+      "language": {
+        "code": "nl",
+        "name": "Dutch"
+      }
+    },
+    {
+      "country": {
+        "code": "be",
+        "name": "Belgium",
+        "label": "Belgium"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "bf",
+        "name": "Burkina-faso",
+        "label": "Burkina-faso"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "bg",
+        "name": "Bulgaria",
+        "label": "Bulgaria"
+      },
+      "language": {
+        "code": "bg",
+        "name": "български език"
+      }
+    },
+    {
+      "country": {
+        "code": "bj",
+        "name": "Benin",
+        "label": "Benin"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "br",
+        "name": "Brazil",
+        "label": "Brazil"
+      },
+      "language": {
+        "code": "pt",
+        "name": "Português"
+      }
+    },
+    {
+      "country": {
+        "code": "ca",
+        "name": "Canada",
+        "label": "Canada"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "ca",
+        "name": "Canada",
+        "label": "Canada"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "cd",
+        "name": "DR Congo",
+        "label": "DRCongo"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "cd",
+        "name": "DR Congo",
+        "label": "DRCongo"
+      },
+      "language": {
+        "code": "sw",
+        "name": "Kiswahili"
+      }
+    },
+    {
+      "country": {
+        "code": "cg",
+        "name": "Congo",
+        "label": "Congo"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "ci",
+        "name": "Ivory Coast",
+        "label": "Ivory Coast"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "cm",
+        "name": "Cameroon",
+        "label": "Cameroon"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "cn",
+        "name": "中国",
+        "label": "china"
+      },
+      "language": {
+        "code": "zh",
+        "name": "中文"
+      }
+    },
+    {
+      "country": {
+        "code": "cz",
+        "name": "Czech Republic",
+        "label": "Czech Republic"
+      },
+      "language": {
+        "code": "cs",
+        "name": "čeština"
+      }
+    },
+    {
+      "country": {
+        "code": "de",
+        "name": "Germany",
+        "label": "Germany"
+      },
+      "language": {
+        "code": "de",
+        "name": "Deutsch"
+      }
+    },
+    {
+      "country": {
+        "code": "dk",
+        "name": "Denmark",
+        "label": "Denmark"
+      },
+      "language": {
+        "code": "da",
+        "name": "dansk"
+      }
+    },
+    {
+      "country": {
+        "code": "eg",
+        "name": "Egypt",
+        "label": "Egypt"
+      },
+      "language": {
+        "code": "ar",
+        "name": "عربي"
+      }
+    },
+    {
+      "country": {
+        "code": "es",
+        "name": "Spain",
+        "label": "Spain"
+      },
+      "language": {
+        "code": "es",
+        "name": "Español"
+      }
+    },
+    {
+      "country": {
+        "code": "fr",
+        "name": "France",
+        "label": "France"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "gb",
+        "name": "United Kingdom",
+        "label": "United Kingdom"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "gn",
+        "name": "Guinea",
+        "label": "Guinea"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "gh",
+        "name": "Ghana",
+        "label": "Ghana"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "id",
+        "name": "Indonesia",
+        "label": "Indonesia"
+      },
+      "language": {
+        "code": "id",
+        "name": "Bahasa Indonesia"
+      }
+    },
+    {
+      "country": {
+        "code": "in",
+        "name": "India",
+        "label": "India"
+      },
+      "language": {
+        "code": "te",
+        "name": "తెలుగు"
+      }
+    },
+    {
+      "country": {
+        "code": "in",
+        "name": "India",
+        "label": "India"
+      },
+      "language": {
+        "code": "mr",
+        "name": "मराठी"
+      }
+    },
+    {
+      "country": {
+        "code": "in",
+        "name": "India",
+        "label": "India"
+      },
+      "language": {
+        "code": "kn",
+        "name": "ಕನ್ನಡ"
+      }
+    },
+    {
+      "country": {
+        "code": "in",
+        "name": "India",
+        "label": "India"
+      },
+      "language": {
+        "code": "ta",
+        "name": "தமிழ்"
+      }
+    },
+    {
+      "country": {
+        "code": "in",
+        "name": "India",
+        "label": "India"
+      },
+      "language": {
+        "code": "ur",
+        "name": "اردو"
+      }
+    },
+    {
+      "country": {
+        "code": "in",
+        "name": "India",
+        "label": "India"
+      },
+      "language": {
+        "code": "bn",
+        "name": "বাংলা (IN)"
+      }
+    },
+    {
+      "country": {
+        "code": "in",
+        "name": "India",
+        "label": "India"
+      },
+      "language": {
+        "code": "hi",
+        "name": "हिन्दी"
+      }
+    },
+    {
+      "country": {
+        "code": "in",
+        "name": "India",
+        "label": "India"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "in",
+        "name": "India",
+        "label": "India"
+      },
+      "language": {
+        "code": "ml",
+        "name": "മലയാളം"
+      }
+    },
+    {
+      "country": {
+        "code": "in",
+        "name": "India",
+        "label": "India"
+      },
+      "language": {
+        "code": "gu",
+        "name": "ગુજરાતી"
+      }
+    },
+    {
+      "country": {
+        "code": "it",
+        "name": "Italy",
+        "label": "Italy"
+      },
+      "language": {
+        "code": "it",
+        "name": "Italiano"
+      }
+    },
+    {
+      "country": {
+        "code": "jp",
+        "name": "Japan",
+        "label": "Japan"
+      },
+      "language": {
+        "code": "ja",
+        "name": "にほんご"
+      }
+    },
+    {
+      "country": {
+        "code": "ke",
+        "name": "Kenya",
+        "label": "Kenya"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "kr",
+        "name": "Korea",
+        "label": "Korea"
+      },
+      "language": {
+        "code": "ko",
+        "name": "한국어"
+      }
+    },
+    {
+      "country": {
+        "code": "lr",
+        "name": "Liberia",
+        "label": "Liberia"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "ly",
+        "name": "Libya",
+        "label": "Libya"
+      },
+      "language": {
+        "code": "ar",
+        "name": "عربي"
+      }
+    },
+    {
+      "country": {
+        "code": "ma",
+        "name": "Morocco",
+        "label": "Morocco"
+      },
+      "language": {
+        "code": "ar",
+        "name": "عربي"
+      }
+    },
+    {
+      "country": {
+        "code": "ma",
+        "name": "Morocco",
+        "label": "Morocco"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "mg",
+        "name": "Madagascar",
+        "label": "Madagascar"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "ml",
+        "name": "Mali",
+        "label": "Mali"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "mx",
+        "name": "Mexico",
+        "label": "Mexico"
+      },
+      "language": {
+        "code": "es",
+        "name": "Español"
+      }
+    },
+    {
+      "country": {
+        "code": "my",
+        "name": "Malaysia",
+        "label": "Malaysia"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "ne",
+        "name": "Niger",
+        "label": "Niger"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "ng",
+        "name": "Nigeria",
+        "label": "Nigeria"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "ng",
+        "name": "Nigeria",
+        "label": "Nigeria"
+      },
+      "language": {
+        "code": "ha",
+        "name": "هَوُسَ"
+      }
+    },
+    {
+      "country": {
+        "code": "nl",
+        "name": "Netherlands",
+        "label": "Netherlands"
+      },
+      "language": {
+        "code": "nl",
+        "name": "Dutch"
+      }
+    },
+    {
+      "country": {
+        "code": "no",
+        "name": "Norway",
+        "label": "Norway"
+      },
+      "language": {
+        "code": "no",
+        "name": "norsk"
+      }
+    },
+    {
+      "country": {
+        "code": "pk",
+        "name": "Pakistan",
+        "label": "Pakistan"
+      },
+      "language": {
+        "code": "ur",
+        "name": "اردو"
+      }
+    },
+    {
+      "country": {
+        "code": "ph",
+        "name": "Philippines",
+        "label": "Philippines"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "pl",
+        "name": "Poland",
+        "label": "Poland"
+      },
+      "language": {
+        "code": "pl",
+        "name": "język polski"
+      }
+    },
+    {
+      "country": {
+        "code": "pt",
+        "name": "Portugal",
+        "label": "Portugal"
+      },
+      "language": {
+        "code": "pt",
+        "name": "Português"
+      }
+    },
+    {
+      "country": {
+        "code": "ru",
+        "name": "Russia",
+        "label": "Russia"
+      },
+      "language": {
+        "code": "ru",
+        "name": "Русский"
+      }
+    },
+    {
+      "country": {
+        "code": "rw",
+        "name": "Rwanda",
+        "label": "Rwanda"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "sd",
+        "name": "Sudan",
+        "label": "Sudan"
+      },
+      "language": {
+        "code": "ar",
+        "name": "عربي"
+      }
+    },
+    {
+      "country": {
+        "code": "se",
+        "name": "Sweden",
+        "label": "Sweden"
+      },
+      "language": {
+        "code": "sv",
+        "name": "svenska"
+      }
+    },
+    {
+      "country": {
+        "code": "sn",
+        "name": "Senegal",
+        "label": "Senegal"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "th",
+        "name": "Thailand",
+        "label": "Thailand"
+      },
+      "language": {
+        "code": "th",
+        "name": "ภาษาไทย"
+      }
+    },
+    {
+      "country": {
+        "code": "tn",
+        "name": "Tunisia",
+        "label": "Tunisia"
+      },
+      "language": {
+        "code": "ar",
+        "name": "عربي"
+      }
+    },
+    {
+      "country": {
+        "code": "tn",
+        "name": "Tunisia",
+        "label": "Tunisia"
+      },
+      "language": {
+        "code": "fr",
+        "name": "Français (FR)"
+      }
+    },
+    {
+      "country": {
+        "code": "tr",
+        "name": "Turkey",
+        "label": "Turkey"
+      },
+      "language": {
+        "code": "tr",
+        "name": "Türkçe"
+      }
+    },
+    {
+      "country": {
+        "code": "tw",
+        "name": "中國台灣",
+        "label": "Taiwan"
+      },
+      "language": {
+        "code": "zh-tw",
+        "name": "中文(繁体)"
+      }
+    },
+    {
+      "country": {
+        "code": "ua",
+        "name": "Ukraine",
+        "label": "Ukraine"
+      },
+      "language": {
+        "code": "ru",
+        "name": "Русский"
+      }
+    },
+    {
+      "country": {
+        "code": "ua",
+        "name": "Ukraine",
+        "label": "Ukraine"
+      },
+      "language": {
+        "code": "uk",
+        "name": "Українська мова"
+      }
+    },
+    {
+      "country": {
+        "code": "ug",
+        "name": "Uganda",
+        "label": "Uganda"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "us",
+        "name": "United States",
+        "label": "United States"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "vn",
+        "name": "Vietnam",
+        "label": "Vietnam"
+      },
+      "language": {
+        "code": "vi",
+        "name": "Tiếng Việt"
+      }
+    },
+    {
+      "country": {
+        "code": "za",
+        "name": "South Africa",
+        "label": "South Africa"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    },
+    {
+      "country": {
+        "code": "zm",
+        "name": "Zambia",
+        "label": "Zambia"
+      },
+      "language": {
+        "code": "en",
+        "name": "English"
+      }
+    }
+  ]
+}

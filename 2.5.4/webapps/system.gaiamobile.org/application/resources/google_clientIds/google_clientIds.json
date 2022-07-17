@@ -1,0 +1,131 @@
+{
+  "default_clientId": "kaios-americamovil-mx",
+  "kaios_default":"kaios-only",
+  "google_clientIds": [
+  {
+    "mcc": "334",
+    "mnc": "020",
+    "country": "MÃ©xico",
+    "countryCode": "MX",
+    "clientId": "kaios-americamovil-mx"
+  },
+  {
+    "mcc": "714",
+    "mnc": "03",
+    "country": "PanamÃ¡",
+    "countryCode": "PA",
+    "clientId": "kaios-americamovil-pa"
+  },
+  {
+    "mcc": "722",
+    "mnc": "310",
+    "country": "Argentina",
+    "countryCode": "AR",
+    "clientId": "kaios-americamovil-ar"
+  },
+  {
+    "mcc": "748",
+    "mnc": "10",
+    "country": "Uruguay",
+    "countryCode": "UY",
+    "clientId": "kaios-americamovil-uy"
+  },
+  {
+    "mcc": "744",
+    "mnc": "02",
+    "country": "Paraguay",
+    "countryCode": "PY",
+    "clientId": "kaios-americamovil-py"
+  },
+  {
+    "mcc": "704",
+    "mnc": "01",
+    "country": "Guatemala",
+    "countryCode": "GT",
+    "clientId": "kaios-americamovil-gt"
+  },
+  {
+    "mcc": "708",
+    "mnc": "001",
+    "country": "Honduras",
+    "countryCode": "HN",
+    "clientId": "kaios-americamovil-hn"
+  },
+  {
+    "mcc": "706",
+    "mnc": "01",
+    "country": "El Salvador",
+    "countryCode": "SV",
+    "clientId": "kaios-americamovil-sv"
+  },
+  {
+    "mcc": "710",
+    "mnc": "73",
+    "country": "Nicaragua",
+    "countryCode": "NI",
+    "clientId": "kaios-americamovil-ni"
+  },
+  {
+    "mcc": "712",
+    "mnc": "03",
+    "country": "Costa Rica",
+    "countryCode": "CR",
+    "clientId": "kaios-americamovil-cr"
+  },
+  {
+    "mcc": "716",
+    "mnc": "10",
+    "country": "PerÃº",
+    "countryCode": "PE",
+    "clientId": "kaios-americamovil-pe"
+  },
+  {
+    "mcc": "732",
+    "mnc": "01",
+    "country": "Colombia",
+    "countryCode": "CO",
+    "clientId": "kaios-americamovil-co"
+  },
+  {
+    "mcc": "724",
+    "mnc": "05",
+    "country": "Brasil",
+    "countryCode": "BR",
+    "clientId": "kaios-americamovil-br"
+  },
+  {
+    "mcc": "740",
+    "mnc": "01",
+    "country": "Ecuador",
+    "countryCode": "EC",
+    "clientId": "kaios-americamovil-ec"
+  },
+  {
+    "mcc": "730",
+    "mnc": "03",
+    "country": "Chile",
+    "countryCode": "CL",
+    "clientId": "kaios-americamovil-cl"
+  },
+  {
+    "mcc": "370",
+    "mnc": "02",
+    "country": "RepÃºblica Dominicana",
+    "countryCode": "DO",
+    "clientId": "kaios-americamovil-do"
+  },
+  {
+    "mcc": "330",
+    "mnc": "110",
+    "country": "Puerto Rico",
+    "countryCode": "PR",
+    "clientId": "kaios-americamovil-pr"
+  },
+  {
+    "mcc": "310",
+    "mnc": "01",
+    "country": "Estados Unidos",
+    "countryCode": "US",
+    "clientId": "kaios-americamovil-us"
+  }]
+}

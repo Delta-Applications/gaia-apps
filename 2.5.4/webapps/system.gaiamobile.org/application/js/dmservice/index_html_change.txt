@@ -1,0 +1,23 @@
+diff --git a/index.html b/index.html
+index 02cfd5c..3732597 100755
+--- a/index.html
++++ b/index.html
+@@ -1026,5 +1026,18 @@
+     <script defer src="dist/vendors.js"></script>
+     <script defer src="dist/bundle.js"></script>
+     <script defer src="js/fota_stub.js"></script>
++
++    <!-- DO NOT CHANGE THE POSITION OF THE FILE BELOW- AES related files-->
++    <!-- <script defer src="js/dmservice/CryptoJSv3.1.2/components/core.js"></script>
++    <script defer src="js/dmservice/CryptoJSv3.1.2/components/enc-base64.js"></script>
++    <script defer src="js/dmservice/CryptoJSv3.1.2/components/md5.js"></script>
++    <script defer src="js/dmservice/CryptoJSv3.1.2/components/evpkdf.js"></script>
++    <script defer src="js/dmservice/CryptoJSv3.1.2/components/cipher-core.js"></script>
++    <script defer src="js/dmservice/CryptoJSv3.1.2/components/mode-ecb.js"></script>
++    <script defer src="js/dmservice/CryptoJSv3.1.2/components/aes.js"></script> -->
++
++    <!-- RAS related files -->
++    <!-- <script defer src="js/dmservice/jsrsasign-all-min.js"></script> -->
++    <script defer src="js/dmservice/device_manager_service.js"></script>
+   </body>
+ </html>

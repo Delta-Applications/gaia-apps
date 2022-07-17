@@ -1,0 +1,4 @@
+
+(function(exports){'use strict';function handleOpenUrl(url){const app=Service.query('getTopMostWindow');var config=new BrowserConfigHelper({url:url});config.oop=true;var newApp=new AppWindow(config);newApp.requestOpen();if(app&&app.isHomescreen){setTimeout(()=>{window.isOnline().then((connected)=>{if(!connected){Service.request('OfflineDialog:show');}});},500);}}
+function Browser(){}
+Browser.prototype={start:function(){},handleActivity:function(activity){var data=activity.source.data;switch(data.type){case'url':handleOpenUrl(UrlHelper.getUrlFromInput(data.url));break;}},};exports.Browser=Browser;}(window));

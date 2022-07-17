@@ -1,0 +1,45 @@
+<element name="about-legal" extends="section">
+  <template>
+    <gaia-header data-href="#about">
+      <h1 data-l10n-id="about-legal-info-header"></h1>
+    </gaia-header>
+
+    <div>
+      <ul role="menu">
+        <li role="menuitem">
+          <a class="menu-item" href="#about-hmd">
+            <span data-l10n-id="hmd-privacy-title"></span>
+          </a>
+        </li>
+        <li role="menuitem">
+          <a class="menu-item" href="#about-licensing">
+            <span data-l10n-id="about-license-terms"></span>
+          </a>
+        </li>
+        <li role="menuitem">
+          <a class="menu-item" href="#about-source-code">
+            <span data-l10n-id="open-source-licenses"></span>
+          </a>
+        </li>
+        <li role="menuitem" id="lyf-certificate-item" class="hidden">
+          <a class="menu-item" href="#lyf-reliance-certificate">
+            <span data-l10n-id="lyf-reliance-certificate"></span>
+          </a>
+        </li>
+        <li role="menuitem" id="lyf-privacy-item" class="hidden">
+          <a class="menu-item" href="#about-lyf-privacy">
+            <span data-l10n-id="about-lyf-privacy"></span>
+          </a>
+        </li>
+        <li role="menuitem" id="_health_Legal" class="hidden">
+          <a class="menu-item" href="#about-health-safety">
+            <span data-l10n-id="health-legal-notices"></span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <panel data-path="panels/about_legal/panel"></panel>
+
+  </template>
+</element>

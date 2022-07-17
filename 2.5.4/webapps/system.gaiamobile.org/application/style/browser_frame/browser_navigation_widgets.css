@@ -1,0 +1,85 @@
+.appWindow > .scroll-direction-indicator {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - var(--statusbar-height));
+  top: auto;
+  bottom: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.appWindow.popupWindow > .scroll-direction-indicator {
+  height: calc(100% - var(--header-height) - var(--statusbar-height));
+  top: var(--header-height);
+}
+
+.scroll-direction-indicator.hidden {
+  display: none;
+}
+
+.scroll-direction-icon {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-position: center;
+}
+
+.scroll-direction-icon.top {
+  top: 0;
+  width: 100%;
+  height: 1rem;
+  background-image: url('images/arrow_up.png');
+}
+
+.appWindow.collapsible.browser .scroll-direction-icon.top {
+  top: var(--rocketbar-titlebar-height);
+}
+
+.appWindow.collapsible.statusbar-overlapped.browser .scroll-direction-icon.top {
+  top: calc(var(--rocketbar-titlebar-height) + var(--statusbar-height));
+}
+
+.scroll-direction-icon.left {
+  top: 1rem;
+  width: 1rem;
+  height: calc(100% - 2rem);
+  background-image: url('images/arrow_left.png');
+}
+
+.appWindow.collapsible.browser .scroll-direction-icon.left {
+  top: calc(1rem + var(--rocketbar-titlebar-height));
+  height: calc(100% - 2rem - var(--rocketbar-titlebar-height));
+  left: 0;
+}
+
+.appWindow.collapsible.statusbar-overlapped.browser .scroll-direction-icon.left {
+  top: calc(1rem + var(--rocketbar-titlebar-height) + var(--statusbar-height));
+  height: calc(100% - 2rem - var(--rocketbar-titlebar-height) - var(--statusbar-height));
+  left: 0;
+}
+
+.scroll-direction-icon.right {
+  width: 1rem;
+  height: calc(100% - 2rem);
+  top: 1rem;
+  right: 0;
+  background-image: url('images/arrow_right.png');
+}
+
+.appWindow.collapsible.browser .scroll-direction-icon.right {
+  top: calc(1rem + var(--rocketbar-titlebar-height));
+  height: calc(100% - 2rem - var(--rocketbar-titlebar-height));
+}
+
+.appWindow.collapsible.statusbar-overlapped.browser .scroll-direction-icon.right {
+  top: calc(1rem + var(--rocketbar-titlebar-height) + var(--statusbar-height));
+  height: calc(100% - 2rem - var(--rocketbar-titlebar-height) - var(--statusbar-height));
+}
+
+.scroll-direction-icon.bottom {
+  bottom: 0;
+  width: 100%;
+  height: 1rem;
+  background-image: url('images/arrow_down.png');
+}
+

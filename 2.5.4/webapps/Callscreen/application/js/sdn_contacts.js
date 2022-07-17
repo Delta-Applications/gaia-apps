@@ -1,0 +1,4 @@
+'use strict';let SdnContacts=(function(){const sdncontacts=[];function get(){return sdncontacts;}
+function fetchSdn(){const conns=window.navigator.mozMobileConnections;for(let index=0;index<conns.length;index++){sdncontacts[index]=new Map();const iccId=conns[index].iccId;if(iccId){const icc=navigator.mozIccManager.getIccById(iccId);if(icc){const request=icc.readContacts('sdn');request.onsuccess=()=>{const result=request.result;for(let i=0;i<result.length;i++){const number=result[i].tel[0].value;if(number){sdncontacts[index].set(number,result[i].name||'');}}};request.onerror=()=>{navigator.mozContacts.addEventListener('contactchange',function handler(evt){if(evt.reason==='refreshed'){navigator.mozContacts.removeEventListener('contactchange',handler);fetchSdn();}});};}}}}
+function init(){fetchSdn();}
+return{init:init,get:get};})();

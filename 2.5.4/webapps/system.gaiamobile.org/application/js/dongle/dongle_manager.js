@@ -1,0 +1,12 @@
+'use strict';let httpServer;function isValidRange(requestHeaders,fileSize){if(!requestHeaders['Range']){return true}
+const rangeArray=requestHeaders['Range'].split(/bytes=([0-9]*)-([0-9]*)/);let start=0;if(rangeArray[1]!==undefined){start=parseInt(rangeArray[1],10);}
+return start<fileSize}
+function fetchFile(fetchIndex,request,response,path){const storages=navigator.getDeviceStorages('sdcard')
+const requestStorage=storages[fetchIndex]&&storages[fetchIndex].get(path);if(requestStorage){requestStorage.onsuccess=()=>{console.log('requestStorage onsuccess');const file=requestStorage.result
+const isValid=isValidRange(request.headers,file.size)
+if(isValid){response.headers['Content-Type']=file.type;response.sendFile(file,request.headers);}else{console.warn('requested range not satisfiable');response.send(null,416);}};requestStorage.onerror=()=>{if(fetchIndex===storages.length-1){console.warn('file not found');response.send(null,404);}else{fetchFile(fetchIndex+1,request,response,path)}}}else{response.send(null,404)}}
+function startHttpServer(){httpServer=new HTTPServer();httpServer.start();httpServer.addEventListener('request',evt=>{const request=evt.request;const response=evt.response;const path=request.path?decodeURIComponent(request.path):'';if(path==='/'){console.warn('path == /');response.send(null,404);}else if(path){fetchFile(0,request,response,path)}else{console.warn('path is empty');response.send(null,404);}});}
+function stopHttpServer(){httpServer&&httpServer.stop();httpServer=null;}
+let loaded=false;const DongleManager={init:function(){if('dongleManager'in navigator&&'mozTCPSocket'in navigator){navigator.dongleManager.ondonglestatuschange=(event)=>{var evt=document.createEvent('CustomEvent');evt.initCustomEvent('dongle-status-change',true,false,null);window.dispatchEvent(evt);if(!loaded&&event.isConnected){LazyLoader.load(['js/dongle/binary_utils.js','js/dongle/event_target.js','js/dongle/http_request.js','js/dongle/http_response.js','js/dongle/http_status.js','js/dongle/http_server.js'],function(){loaded=true
+startHttpServer()});}else{if(event.isConnected){startHttpServer()}else if(!event.isConnected){stopHttpServer()}}};}else{console.error('dongleManager not in navigator')}}}
+DongleManager.init()

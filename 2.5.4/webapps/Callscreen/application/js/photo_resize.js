@@ -1,0 +1,1 @@
+'use strict';var PhotoResize={resize:function(blob){return new Promise(resolve=>{let desWidth=window.screen.width;let desHeight=window.screen.height;ImageUtils.resizeAndCropToCover(blob,desWidth,desHeight,ImageUtils.PNG).then(resizedBlob=>{resolve(resizedBlob);});});}};
