@@ -1,18 +1,17 @@
-
 /**
  * Show misc informations
  *
  * @module abou_more_info/DeviceInfo
  */
-define('panels/about_more_info/device_info',['require'],function(require) {
-  
+define('panels/about_more_info/device_info', ['require'], function (require) {
+
 
   /**
    * @alias module:abou_more_info/DeviceInfo
    * @class DeviceInfo
    * @returns {DeviceInfo}
    */
-  var DeviceInfo = function() {
+  var DeviceInfo = function () {
     this._elements = {};
   };
 
@@ -50,7 +49,7 @@ define('panels/about_more_info/device_info',['require'],function(require) {
     _getImeiCode: function mi__getImeiCode(simSlotIndex) {
       var dialPromise = navigator.mozMobileConnections[simSlotIndex].getDeviceIdentities();
 
-      return dialPromise.then(function(deviceInfo) {
+      return dialPromise.then(function (deviceInfo) {
         if (deviceInfo.imei) {
           return deviceInfo.imei;
         } else {
@@ -85,7 +84,7 @@ define('panels/about_more_info/device_info',['require'],function(require) {
         span.setAttribute('data-l10n-id', 'unavailable');
         this._elements.deviceInfoImeis.appendChild(span);
       } else {
-        imeis.forEach(function(imei, index) {
+        imeis.forEach(function (imei, index) {
           var span = document.createElement('span');
 
           if (imeis.length > 1) {
@@ -93,7 +92,7 @@ define('panels/about_more_info/device_info',['require'],function(require) {
               'deviceInfo-IMEI-with-index', {
                 index: index + 1,
                 imei: imei
-            });
+              });
           } else {
             span.textContent = imei;
           }
@@ -127,9 +126,9 @@ define('panels/about_more_info/device_info',['require'],function(require) {
       }
 
       var self = this;
-      return Promise.all(promises).then(function(imeis) {
+      return Promise.all(promises).then(function (imeis) {
         self._createImeiField(imeis);
-      }, function() {
+      }, function () {
         self._createImeiField(null);
       });
     },
@@ -137,7 +136,7 @@ define('panels/about_more_info/device_info',['require'],function(require) {
     _getMeidCode: function mi__getMeidCode(simSlotIndex) {
       var dialPromise = navigator.mozMobileConnections[simSlotIndex].getDeviceIdentities();
 
-      return dialPromise.then(function(deviceInfo) {
+      return dialPromise.then(function (deviceInfo) {
         if (deviceInfo.meid) {
           return deviceInfo.meid;
         } else {
@@ -158,7 +157,7 @@ define('panels/about_more_info/device_info',['require'],function(require) {
       }
 
       var count = 0;
-      meids.forEach(function(meid, index) {
+      meids.forEach(function (meid, index) {
         // XXX, meid may be returned a string 'undefined' here which is
         // not correcet, until there's any fix in gecko, use this judge
         // as a workaround.
@@ -201,9 +200,9 @@ define('panels/about_more_info/device_info',['require'],function(require) {
       }
 
       var self = this;
-      return Promise.all(promises).then(function(meids) {
+      return Promise.all(promises).then(function (meids) {
         self._createMeidField(meids);
-      }, function() {
+      }, function () {
         self._createMeidField(null);
       });
     },
@@ -229,7 +228,7 @@ define('panels/about_more_info/device_info',['require'],function(require) {
         this._elements.deviceInfoIccIds.removeChild(
           this._elements.deviceInfoIccIds.lastChild);
       }
-      Array.prototype.forEach.call(conns, function(conn, index) {
+      Array.prototype.forEach.call(conns, function (conn, index) {
         var span = document.createElement('span');
         if (conn.iccId) {
           if (multiSim) {
@@ -237,7 +236,7 @@ define('panels/about_more_info/device_info',['require'],function(require) {
               'deviceInfo-ICCID-with-index', {
                 index: index + 1,
                 iccid: conn.iccId
-            });
+              });
           } else {
             span.textContent = conn.iccId;
           }
@@ -246,7 +245,7 @@ define('panels/about_more_info/device_info',['require'],function(require) {
             navigator.mozL10n.setAttributes(span,
               'noSim-with-index-and-colon', {
                 index: index + 1
-            });
+              });
           } else {
             span.setAttribute('data-l10n-id', 'noSimCard');
           }
@@ -266,8 +265,8 @@ define('panels/about_more_info/device_info',['require'],function(require) {
  *
  * @module about_more_info/hardwareInfo
  */
-define('panels/about_more_info/hardware_info',['require','shared/settings_listener'],function(require) {
-  
+define('panels/about_more_info/hardware_info', ['require', 'shared/settings_listener'], function (require) {
+
 
   var SettingsListener = require('shared/settings_listener');
 
@@ -276,7 +275,7 @@ define('panels/about_more_info/hardware_info',['require','shared/settings_listen
    * @class HardwareInfo
    * @returns {HardwareInfo}
    */
-  var HardwareInfo = function() {
+  var HardwareInfo = function () {
     this._elements = {};
   };
 
@@ -331,22 +330,22 @@ define('panels/about_more_info/hardware_info',['require','shared/settings_listen
      */
     _loadBluetoothAddress: function about_loadBluetoothAddress() {
       getSetting('bluetooth.settings.ui').then((value) => {
-        if (DeviceFeature.getValue('bt') !== 'true' || !navigator.mozBluetooth
-          || value === HIDE) {
+        if (DeviceFeature.getValue('bt') !== 'true' || !navigator.mozBluetooth ||
+          value === HIDE) {
           document.querySelector('.list-bluetooth').hidden = true;
           window.dispatchEvent(new CustomEvent('refresh'));
           return;
         }
         document.querySelector('.list-bluetooth').hidden = false;
 
-        return new Promise(function(resolve, reject) {
+        return new Promise(function (resolve, reject) {
           var bluetoothModulePath = 'modules/bluetooth/bluetooth_context';
           if (bluetoothModulePath) {
             require([bluetoothModulePath], resolve);
           } else {
             reject();
           }
-        }).then(function(Bluetooth) {
+        }).then(function (Bluetooth) {
           if (Bluetooth) {
             Bluetooth.observe('address',
               this._refreshBluetoothAddress.bind(this));
@@ -363,11 +362,11 @@ define('panels/about_more_info/hardware_info',['require','shared/settings_listen
           window.dispatchEvent(new CustomEvent('refresh'));
           return;
         }
-        if (value === HIDE /*'hide'*/) {
+        if (value === HIDE /*'hide'*/ ) {
           document.querySelector('.list-mac').hidden = true;
-        } else if (value === SHOW /*'show'*/) {
+        } else if (value === SHOW /*'show'*/ ) {
           document.querySelector('.list-mac').hidden = false;
-        } else if (value === GRAYOUT /*'grayout'*/) {
+        } else if (value === GRAYOUT /*'grayout'*/ ) {
           document.querySelector('.list-mac').hidden = false;
         }
         window.dispatchEvent(new CustomEvent('refresh'));
@@ -383,18 +382,20 @@ define('panels/about_more_info/hardware_info',['require','shared/settings_listen
 /**
  * Used to show Device/Information/More Information panel
  */
-define('panels/about_more_info/panel',['require','modules/settings_panel','panels/about_more_info/device_info','panels/about_more_info/hardware_info','shared/settings_listener'],function(require) {
-  
+define('panels/about_more_info/panel', ['require', 'modules/settings_panel', 'panels/about_more_info/device_info', 'panels/about_more_info/hardware_info', 'shared/settings_listener'], function (require) {
+
   var SettingsPanel = require('modules/settings_panel');
   var DeviceInfo = require('panels/about_more_info/device_info');
   var HardwareInfo = require('panels/about_more_info/hardware_info');
   var SettingsListener = require('shared/settings_listener');
   let keyArray = [];
   let elements = null;
+  let waitForMore = false;
 
   function keyDwnHandler(evt) {
     switch (evt.key) {
       case 'SoftLeft':
+      case 'Enter':
       case 'SoftRight':
         keyArray.push(evt.key);
         checkDeveloperMode(keyArray);
@@ -406,29 +407,74 @@ define('panels/about_more_info/panel',['require','modules/settings_panel','panel
   }
 
   function checkDeveloperMode(keyArray) {
-    let string = keyArray.join(' ');
+    console.log("check dev menu")
     let len = keyArray.length;
-    if (len >= 6) {
-      if (string.indexOf('SoftLeft SoftLeft SoftRight SoftLeft SoftRight SoftRight') !== -1) {
-        cleanKeyArray();
-        let item = document.querySelector(
-          '[data-show-name="developer.menu.enabled"]');
-        let settings = navigator.mozSettings;
-        if (item && settings) {
-          settings.createLock().get('developer.menu.enabled')
-            .then((result) => {
+    if (len == 6) {
+      console.log("triggered")
+      let item = document.querySelector(
+        '[data-show-name="developer.menu.enabled"]');
+      let settings = navigator.mozSettings;
+      if (item && settings) {
+        settings.createLock().get('developer.menu.enabled')
+          .then((result) => {
             let val = result['developer.menu.enabled'];
-            item.hidden = !!val;
-            settings.createLock().set({'developer.menu.enabled' : !val});
+
             if (!val) {
-              settings.createLock().set({'debugger.remote-mode' : 'adb-devtools'});
+              settings.createLock().set({
+                'developer.menu.enabled': true
+              });
+              item.hidden = false;
+
+              settings.createLock().set({
+                'debugger.remote-mode': 'adb-devtools'
+              });
               showToast('developer-mode-on');
-            } else {
-              settings.createLock().set({'debugger.remote-mode' : 'disabled'});
-              showToast('developer-mode-off');
+
+            }
+            waitForMore = true;
+
+
+          });
+      }
+    } else if (len >= 12) {
+      let settings = navigator.mozSettings;
+      let item = document.querySelector(
+        '[data-show-name="developer.menu.enabled"]');
+      if (item && settings) {
+        settings.createLock().get('developer.menu.enabled')
+          .then((result) => {
+            let val = result['developer.menu.enabled'];
+            if (val) {
+              settings.createLock().get('developer.menu.more')
+                .then((result) => {
+                  let val = result['developer.menu.more'];
+                  if (val) {
+                    item.hidden = true;
+
+                    settings.createLock().set({
+                      'developer.menu.enabled': false
+                    });
+                    settings.createLock().set({
+                      'debugger.remote-mode': 'disabled'
+                    });
+                    settings.createLock().set({
+                      'developer.menu.more': false
+                    })
+                    showToast('developer-mode-off');
+                    cleanKeyArray();
+
+                  } else {
+                    item.hidden = false;
+                    settings.createLock().set({
+                      'developer.menu.more': true
+                    })
+                    showToast("👀")
+                  }
+
+                });
             }
           });
-        }
+
       }
     }
   }
@@ -453,7 +499,7 @@ define('panels/about_more_info/panel',['require','modules/settings_panel','panel
     var deviceInfo = DeviceInfo();
 
     return SettingsPanel({
-      onInit: function(panel) {
+      onInit: function (panel) {
         deviceInfo.init({
           listImeis: panel.querySelector('.list-imeis'),
           listMeids: panel.querySelector('.list-meids'),
@@ -471,13 +517,13 @@ define('panels/about_more_info/panel',['require','modules/settings_panel','panel
         }
       },
 
-      onBeforeShow: function() {
+      onBeforeShow: function () {
         SettingsSoftkey.hide();
         SettingsListener.observe('developer.ciphertext.disabled', false,
           updateDeveloperMode);
       },
 
-      onBeforeHide: function() {
+      onBeforeHide: function () {
         SettingsListener.unobserve('developer.ciphertext.disabled',
           updateDeveloperMode);
       }

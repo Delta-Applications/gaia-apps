@@ -136,18 +136,23 @@ define('panels/developer/panel',['require','modules/settings_panel','panels/deve
       onBeforeShow: function() {
         window.addEventListener("keydown", developerHandleKeyDown);
         DeviceFeature.ready(() => {
-          if (DeviceFeature.getValue('buildType') === 'user') {
-            this.devToolHeader.hidden = true;
-            this.devToolWifi.hidden = true;
-            this.devToolHud.hidden = true;
-            this.devToolPsu.hidden = true;
-            this.graphicsSettingsHeader.hidden = true;
-            this.graphicsSettings.hidden = true;
-            this.winMngSettingsHeader.hidden = true;
-            this.winMngSettings.hidden = true;
-            this.debugSettingsHeader.hidden = true;
-            this.debugSettings.hidden = true;
-          }
+          settings.createLock().get('developer.menu.more')
+          .then((result) => {
+            let val = !result['developer.menu.more'];
+            this.devToolHeader.hidden = val;
+            this.devToolWifi.hidden = val;
+            this.devToolHud.hidden = val;
+            this.devToolPsu.hidden = val;
+            this.graphicsSettingsHeader.hidden = val;
+            this.graphicsSettings.hidden = val;
+            this.winMngSettingsHeader.hidden = val;
+            this.winMngSettings.hidden = val;
+            this.debugSettingsHeader.hidden = val;
+            this.debugSettings.hidden = val;
+          });
+          /*if (DeviceFeature.getValue('buildType') === 'user') {
+           
+          }*/
         });
       },
 

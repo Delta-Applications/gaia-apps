@@ -9,12 +9,12 @@ var Toaster = (function() {
     }
     const _ = navigator.mozL10n.get;
     if (options.messageL10nId && !options.message) {
-      options.message = _(options.messageL10nId, options.messageL10nArgs);
+      options.message = _(options.messageL10nId, options.messageL10nArgs) || options.messageL10nId;
       options.messageL10nId = null;
       options.messageL10nArgs = null;
     }
     if (options.titleL10nId && !options.title) {
-      options.title = _(options.titleL10nId, options.titleL10nArgs);
+      options.title = _(options.titleL10nId, options.titleL10nArgs) || options.titleL10nId;
       options.titleL10nId = null;
       options.titleL10nArgs = null;
     }

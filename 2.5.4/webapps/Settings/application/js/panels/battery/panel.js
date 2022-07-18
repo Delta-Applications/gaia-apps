@@ -1,8 +1,8 @@
 /**
  * The battery panel displays battery information provided by Battery.
  */
-define(['require','modules/settings_panel','modules/battery','shared/settings_listener'],function(require) {
-  
+define(['require', 'modules/settings_panel', 'modules/battery', 'shared/settings_listener'], function (require) {
+
 
   var SettingsPanel = require('modules/settings_panel');
   var Battery = require('modules/battery');
@@ -11,10 +11,12 @@ define(['require','modules/settings_panel','modules/battery','shared/settings_li
   return function ctor_battery_panel() {
     var elements = {};
     var powersupply = window.navigator.powersupply;
-    var _refreshText = function() {
+    var _refreshText = function () {
       navigator.mozL10n.setAttributes(elements.batteryLevelText,
-                                      'batteryLevel-percent-' + Battery.state,
-                                      { level: Battery.level });
+        'batteryLevel-percent-' + Battery.state, {
+          level: Battery.level
+        });
+        
     };
 
     var listElements = document.querySelectorAll('#battery li');
@@ -29,7 +31,7 @@ define(['require','modules/settings_panel','modules/battery','shared/settings_li
           name: 'Select',
           l10nId: 'select',
           priority: 2,
-          method: function() {}
+          method: function () {}
         }]
       };
 
@@ -78,7 +80,7 @@ define(['require','modules/settings_panel','modules/battery','shared/settings_li
     }
 
     function _handleKeyDown(evt) {
-      switch(evt.key) {
+      switch (evt.key) {
         case 'Accept':
         case 'Enter':
           if (elements.autoSavingContainer &&
@@ -132,14 +134,10 @@ define(['require','modules/settings_panel','modules/battery','shared/settings_li
       onInit: function bp_onInit(panel) {
         elements = {
           batteryLevelText: document.getElementById('battery-level'),
-          autoSavingContainer:
-            document.getElementById('auto-saving-container'),
-          powerSaveMode:
-            document.getElementById('power-save-mode'),
-          autoSavingSelect:
-            panel.querySelector('select[name="powersave.threshold"]'),
-          powerSaveSelect:
-            panel.querySelector('select[name="powersave.enabled"]'),
+          autoSavingContainer: document.getElementById('auto-saving-container'),
+          powerSaveMode: document.getElementById('power-save-mode'),
+          autoSavingSelect: panel.querySelector('select[name="powersave.threshold"]'),
+          powerSaveSelect: panel.querySelector('select[name="powersave.enabled"]'),
           items: panel.querySelectorAll("li"),
           powerSaveInfo: panel.querySelector("#power-save-info")
         };
@@ -172,8 +170,8 @@ define(['require','modules/settings_panel','modules/battery','shared/settings_li
         powersupply.removeEventListener('powersupplystatuschanged', _updatePowerSavingMode);
       },
 
-      onShow: function() {},
-      onHide: function() {}
+      onShow: function () {},
+      onHide: function () {}
     });
   };
 });

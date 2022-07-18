@@ -333,6 +333,9 @@
           }, function(error) {
             console.error(error);
           });
+
+          //item.hidden = false
+         // return Promise.resolve();
       } else {
         return Promise.resolve();
       }
