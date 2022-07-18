@@ -137,6 +137,7 @@
     navigateBack: function _backToPreviousPage() {
       var preSection = null;
       var header = document.querySelectorAll('.current [data-href]');
+      console.log(header)
       if (header !== null && header !== undefined) {
         preSection = header[0].getAttribute('data-href');
       }

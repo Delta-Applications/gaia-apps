@@ -191,6 +191,13 @@ require.config({
       ]
     },
     {
+      name: 'panels/homescreens/panel',
+      exclude:  [
+        'main',
+        'modules/apps_cache'
+      ]
+    },
+    {
       name: 'panels/input_methods/panel',
       exclude: [
         'main',
@@ -279,6 +286,7 @@ require.config({
       name: 'panels/sound/panel',
       exclude: ['main']
     },
+   
     {
       name: 'panels/simcard_manager/panel',
       exclude: ['main']

@@ -1052,7 +1052,7 @@ li.longRadioText label.my_radio {
   height: auto !important;
 }
 li label.my_radio {
-  min-height: 0px !important;
+  min-height: 40px !important;
 }
 li>label.my_radio>span {
   -moz-padding-end: 2rem !important;
@@ -1219,6 +1219,7 @@ section > div {
   color: white;
 }
 #app-notices .app-list > li > a.menu-item,
+#homescreens .app-list > li > a.menu-item,
 #appPermissions .app-list > li > a.menu-item {
   padding-right: 0.4rem;
   padding-left: 0.4rem;

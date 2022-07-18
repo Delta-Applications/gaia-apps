@@ -1,5 +1,6 @@
 
 #app-notices ul li img,
+#homescreens ul li img,
 #appPermissions ul li img{
   -moz-margin-end: 1.4rem;
   width: 3rem;
@@ -8,6 +9,8 @@
   padding-right: unset;
 }
 #app-notices ul li > a,
+#homescreens ul li > a,
+#homescreens ul li > label,
 #appPermissions ul li > a{
   flex-direction: row;
   justify-content: flex-start;
@@ -18,12 +21,15 @@
   padding: 1.5rem 0 0.5rem;
   border-top: 0.1rem solid #E6E6E3;
 }
+#homescreens .cb-alert,
 #appPermissions .cb-alert {
   position: fixed;
 }
 .developer-infos > a > small {
   color: #00e;
 }
+#homescreens label.menu-item:after,
+#homescreens a.menu-item:after,
 #appPermissions a.menu-item:after {
   content: unset;
 }

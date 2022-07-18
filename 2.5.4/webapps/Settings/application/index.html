@@ -3180,6 +3180,20 @@
     <panel data-path="panels/display/panel"></panel>
 
   --></section>
+   <!-- Personalization :: Homescreens -->
+  <section role="region" id="homescreens">
+ 
+        <gaia-header data-href="root">
+          <h1>Homescreens</h1>
+        </gaia-header>
+    
+        <div>
+          <ul role="menu" class="app-list"></ul>
+        </div>
+    
+        <panel data-path="panels/homescreens/panel"></panel>
+    
+  </section>
     <!-- Personalization :: Voice -->
     <section role="region" id="voice"><!--
 
@@ -6145,6 +6159,9 @@
             </li>
             <li role="menuitem">
               <a id="menuItem-display" class="menu-item" href="#display" data-l10n-id="display">Display</a>
+            </li>
+            <li role="menuitem">
+              <a id="menuItem-homescreens" class="menu-item" href="#homescreens">Homescreens</a>
             </li>
             <li role="menuitem" data-show-name="aov.support" hidden="">
               <a id="menuItem-voice" class="menu-item" href="#voice" data-l10n-id="voice">Voice</a>
