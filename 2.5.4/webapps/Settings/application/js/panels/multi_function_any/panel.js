@@ -4,19 +4,18 @@ define('modules/navigator/mozApps', [], function () {
 });
 
 /**
- * Handle homescreens panel's functionality.
+ * Handle multi_function panel's functionality.
  *
- * @module Homescreens
+ * @module MultiFunction
  */
-define('panels/homescreens/homescreens', ['require', 'modules/settings_service', 'shared/manifest_helper', 'modules/apps_cache', 'modules/navigator/mozApps'], function (require) {
+define('panels/multi_function_any/multi_function', ['require', 'modules/settings_service', 'shared/manifest_helper', 'modules/apps_cache', 'modules/navigator/mozApps'], function (require) {
 
-    console.log("required!")
     var SettingsService = require('modules/settings_service');
     var ManifestHelper = require('shared/manifest_helper');
     var AppsCache = require('modules/apps_cache');
     var mozApps = require('modules/navigator/mozApps');
 
-    var Homescreens = function pl() {
+    var MultiFunction = function pl() {
         this._listRoot = null;
         this._apps = null;
         this._oldApps = null;
@@ -41,15 +40,16 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
         e.onsuccess = successCb;
         e.onerror = errorCb;
     }
-    Homescreens.prototype = {
+    MultiFunction.prototype = {
         /**
          * initialization
          *
-         * @memberOf Homescreens
+         * @memberOf MultiFunction
          * @param {HTMLElement} listRoot
          * @access public
          */
         init: function pl_init(listRoot) {
+            console.log(listRoot)
             this._listRoot = listRoot;
 
             this._boundOnAppChoose = this._onAppChoose.bind(this);
@@ -87,7 +87,7 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
         /**
          * Refresh the app list when we enter into panel.
          *
-         * @memberOf Homescreens
+         * @memberOf MultiFunction
          * @access public
          * @return {Promise}
          */
@@ -100,7 +100,7 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
         /**
          * Go to app_permissions_detail panel when user select an app.
          *
-         * @memberOf Homescreens
+         * @memberOf MultiFunction
          * @param {Event} evt
          * @access public
          */
@@ -108,8 +108,9 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
             if (evt.target.dataset && evt.target.dataset.appIndex) {
                 var app = this._apps[evt.target.dataset.appIndex]
                 const manifestURL = app.manifestURL,
-                    key = "homescreen.manifestURL",
+                    key = "multifunction.value",
                     name = app.manifest.name;
+                    console.log(app)
                 getSystemSetting(
                     key,
                     (a) => {
@@ -134,7 +135,7 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
          * When new application is installed, we push the app to list, sort them and
          * rerender the app list.
          *
-         * @memberOf Homescreens
+         * @memberOf MultiFunction
          * @param {Event} evt
          * @access public
          */
@@ -149,7 +150,7 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
          * When application is uninstalled, we remove it from list and rerender the
          * app list.
          *
-         * @memberOf Homescreens
+         * @memberOf MultiFunction
          * @param {Event} evt
          * @access public
          */
@@ -176,7 +177,7 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
         /**
          * Sort the applist by the name of its manifest.
          *
-         * @memberOf Homescreens
+         * @memberOf MultiFunction
          * @access private
          */
         _sortApps: function pl__sortApps() {
@@ -192,7 +193,7 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
         /**
          * Genrate UI template of app item.
          *
-         * @memberOf Homescreens
+         * @memberOf MultiFunction
          * @access private
          * @param {Object} itemData
          * @return {HTMLDivElement}
@@ -221,7 +222,7 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
             radio.name = 'multifunction-enabled';
             radio.type = 'radio';
 
-            getSystemSetting("homescreen.manifestURL", (a) => {
+            getSystemSetting("multifunction.value", (a) => {
                 radio.checked = a == itemData.manifestURL
             }, (a) => {});
                 
@@ -236,7 +237,7 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
         /**
          * Genrate UI template of app item.
          *
-         * @memberOf Homescreens
+         * @memberOf MultiFunction
          * @access public
          */
         renderList: function pl_renderList() {
@@ -263,7 +264,7 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
         /**
          * Filter explicit apps from moz apps, sort them, and render to screen.
          *
-         * @memberOf Homescreens
+         * @memberOf MultiFunction
          * @access public
          * @return {Promise}
          */
@@ -279,7 +280,7 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
         /**
          * Iterate internal apps and render them on UI.
          *
-         * @memberOf Homescreens
+         * @memberOf MultiFunction
          * @param {Object[]} apps
          * @access private
          */
@@ -293,9 +294,8 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
                 }
 
                 this._currentApp = app;
-                    var display = null;
+                    var display = true;
 
-                    display = manifest.role == "homescreen"
 
                     if (display) {
                         this._apps.push(app);
@@ -319,7 +319,7 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
         /**
          * Get icon URL.
          *
-         * @memberOf Homescreens
+         * @memberOf MultiFunction
          * @param {Object} app
          * @param {Object} icons
          * @access private
@@ -361,26 +361,26 @@ define('panels/homescreens/homescreens', ['require', 'modules/settings_service',
         }
     };
 
-    return function ctor_homescreens() {
-        return new Homescreens();
+    return function ctor_multi_function() {
+        return new MultiFunction();
     };
 });
 
 /* global SettingsSoftkey */
 
-define('panels/homescreens/panel', ['require', 'modules/settings_panel', 'panels/homescreens/homescreens'], function (require) {
+define('panels/multi_function_any/panel', ['require', 'modules/settings_panel', 'panels/multi_function_any/multi_function'], function (require) {
 
 
     var SettingsPanel = require('modules/settings_panel');
-    var Homescreens =
-        require('panels/homescreens/homescreens');
+    var MultiFunction =
+        require('panels/multi_function_any/multi_function');
 
-    return function ctor_homescreens_panel() {
+    return function ctor_multi_function_panel() {
         // We use this flag to identify permissions_table.json has been loaded or
         // not.
         var permissionsTableHasBeenLoaded = false;
         var elements = {};
-        var homescreensModule = Homescreens();
+        var MultiFunctionModule = MultiFunction();
         var previousLanguage = null;
         var currentLanguage = null;
 
@@ -402,21 +402,21 @@ define('panels/homescreens/panel', ['require', 'modules/settings_panel', 'panels
 
         return SettingsPanel({
             onInit: function (panel) {
-                console.log("wowie!!");
+                console.log(panel)
                 elements = {
                     list: panel.querySelector('.app-list')
                 };
-                homescreensModule.init(elements.list);
+                MultiFunctionModule.init(elements.list);
             },
 
             onBeforeShow: function () {
-                homescreensModule.refresh();
-                homescreensModule.enabled = true;
+                MultiFunctionModule.refresh();
+                MultiFunctionModule.enabled = true;
                 updateSKs();
             },
 
             onBeforeHide: function () {
-                homescreensModule.enabled = false;
+                MultiFunctionModule.enabled = false;
             }
         });
     };
