@@ -11,8 +11,9 @@
  * In this case, the user has to unplug the USB cable in order to actually turn
  * off UMS, and we put some text to that effect on the settings screen.
  */
-define(['require','exports','module','modules/apps_cache','modules/settings_service'],function(require, exports, module){
+ define(['require','exports','module','modules/apps_cache','modules/settings_cache','modules/settings_service'],function(require, exports, module){
   var AppsCache = require('modules/apps_cache');
+  var SettingsCache = require('modules/settings_cache');
   var SettingsService = require('modules/settings_service');
   const MEDIA_TYPE = ['music', 'pictures', 'videos', 'sdcard'];
   const ITEM_TYPE = ['music', 'pictures', 'videos', 'other', 'free'];
@@ -308,9 +309,8 @@ define(['require','exports','module','modules/apps_cache','modules/settings_serv
         results[type] = e.target.result;
         current--;
         if (current == 0) {
-          storage.totalSpace().onsuccess = function(e) {
-            results['total'] = e.target.result;
-            results['free'] = results['total'] - results['sdcard'];
+          storage.freeSpace().onsuccess = function(e) {
+            results['free'] = e.target.result;
             if (callback) {
               results['other'] = results['sdcard'] - results['music']
                 - results['pictures'] - results['videos'];
@@ -346,12 +346,10 @@ define(['require','exports','module','modules/apps_cache','modules/settings_serv
           self.enableFormatSDCardBtn(true);
           break;
       }
-      if (Settings.currentPanel === "#mediaStorageDesc") {
-        let focusElement = document.querySelector('#volume-list .focus');
-        let event = new CustomEvent('panelready', {
-          detail: {
-            current: Settings.currentPanel,
-            needFocused: focusElement
+      if(Settings.currentPanel=="#mediaStorageDesc"){
+        var event = new CustomEvent('panelready',{
+          detail:{
+            current:Settings.currentPanel
           }
         });
         window.dispatchEvent(event);
@@ -700,7 +698,7 @@ define(['require','exports','module','modules/apps_cache','modules/settings_serv
           });
 
           // Init format SD card button for unrecognised storage.
-          SettingsDBCache.getSettings(function(allSettings) {
+          SettingsCache.getSettings(function(allSettings) {
             var isUnrecognised = allSettings[EXTERNAL_UNRECOGNISED_KEY];
             this.enableFormatSDCardBtnForUnrecognisedStorage(isUnrecognised);
             // Update storage information after checked the storage
